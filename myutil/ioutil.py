@@ -15,9 +15,10 @@ class Path:
     def __init__(self, path):
         """
         用于操作跟路径有关的类
-        :param path: 路径
+        :param path: 绝对路径
         """
-        self.path = path
+
+        self.path = os.path.abspath(path)
 
     def get_one_sub_folder_list(self) -> List[str]:
         """

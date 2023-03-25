@@ -3,7 +3,7 @@ from myutil.ioutil import Path
 
 
 def test_pass():
-    assert test_Path_get_one_sub_folder_list(), "dummy sample test"
+    assert test_Path_get_one_sub_folder_list(), "sample test"
 
 
 def test_Path_get_one_sub_folder_list():
@@ -12,3 +12,7 @@ def test_Path_get_one_sub_folder_list():
                                                         r"D:\python\myutil\tests\folder\folder_1_2",
                                                         r"D:\python\myutil\tests\folder\folder_1_3"
                                                          ]
+
+
+if __name__ == "__main__":
+    test_pass()
