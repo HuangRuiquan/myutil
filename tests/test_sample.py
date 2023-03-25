@@ -1,8 +1,9 @@
 # Sample Test passing with nose and pytest
 from myutil.ioutil import Path
 
+
 def test_pass():
-    assert True, "dummy sample test"
+    assert test_Path_get_one_sub_folder_list(), "dummy sample test"
 
 
 def test_Path_get_one_sub_folder_list():
