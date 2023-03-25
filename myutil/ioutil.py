@@ -49,19 +49,26 @@ class Path:
                 if os.path.isfile(p):
                     folder_list.append(p)
             return folder_list
+        # todo 根据后缀名返回规定列表
 
     def get_one_sub_folder_name_list(self) -> List[str]:
         """
-        返回当前路径下文件夹名称，不包含路径
+        返回当前路径下文件夹名称
         :return: 文件夹名称列表
         """
-        path_list = self.get_one_sub_folder_name_list()
+        path_list = self.get_one_sub_folder_list()
         folder_name_list = []
         for path in path_list:
             folder_name_list.append(os.path.basename(path))
         return folder_name_list
 
+    def get_file_name(self, retain_suffix=True) -> str:
+        if retain_suffix:
+            return os.path.basename(self.path)
+        else:
+            return os.path.splitext(os.path.basename(self.path))[0]
+
 
 if __name__ == "__main__":
 
-    print(Path(r"D:\python\myutil\tests\folder").get_one_sub_folder_name_list())
+    print(Path(r"D:\python\myutil\tests\folder\file_0_1.txt").get_file_name())
