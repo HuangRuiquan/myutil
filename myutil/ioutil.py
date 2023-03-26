@@ -20,10 +20,10 @@ class Path:
 
         self.path = os.path.abspath(path)
 
-    def get_one_sub_folder_list(self) -> List[str]:
+    def get_sub_folder_list(self) -> List[str]:
         """
         根据提供的路径返回路径下的子文件夹列表
-        :return:
+        :return: 返回子文件夹列表
         """
         if not os.path.isdir(self.path):
             raise FooError(f"提供的路径不存在或者不是文件夹:{self.path}")
@@ -56,7 +56,7 @@ class Path:
         返回当前路径下文件夹名称
         :return: 文件夹名称列表
         """
-        path_list = self.get_one_sub_folder_list()
+        path_list = self.get_sub_folder_list()
         folder_name_list = []
         for path in path_list:
             folder_name_list.append(os.path.basename(path))
