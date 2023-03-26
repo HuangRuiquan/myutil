@@ -1,7 +1,7 @@
 import os
 
 __all__ = [
-    "Path"
+    "Path",
 ]
 
 from typing import List
