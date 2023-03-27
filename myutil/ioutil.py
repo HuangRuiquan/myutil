@@ -1,10 +1,10 @@
 import os
+from typing import List
+
 
 __all__ = [
     "Path",
 ]
-
-from typing import List
 
 
 class FooError(ValueError):
@@ -53,7 +53,7 @@ class Path:
                         folder_list.append(p)
         return folder_list
 
-    def get_one_sub_folder_name_list(self) -> List[str]:
+    def get_sub_folder_name_list_at_present_dir(self) -> List[str]:
         """
         返回当前路径下文件夹名称
         :return: 文件夹名称列表
@@ -102,7 +102,26 @@ class Path:
             file_list.extend(Path(folder).get_file_list_at_present_dir(suffix))
         return file_list
 
+    def get_filename_list_at_present_dir(self, suffix: List[str] = None) -> List[str]:
+        """
+        获取当前文件夹下文件名列表
+        :param suffix: 文件后缀列表
+        :return: 文件名列表
+        """
+        filename_list = []
+        for file in self.get_file_list_at_present_dir(suffix):
+            filename_list.append(os.path.basename(file))
+        return filename_list
+
+    def makedir(self, mode=0o777):
+        """
+        创建文件夹，不用考虑文件夹是否是单层
+        :param mode:要为目录设置的权限数字模式，默认的模式为 0o777 (八进制)
+        :return:
+        """
+        os.makedirs(self.path, mode, exist_ok=True)
+
 
 if __name__ == "__main__":
-    print(Path(r"D:\python\myutil\tests\folder").get_all_file_list([".png", ".rtf"]).__len__())
-    print(Path(r"D:\python\myutil\tests\folder").get_all_file_list([".png", ".rtf"]))
+    # print(Path("..\\tests\\test_data\\folder\\new_dir1\\new_dir2\\new_dir3").makedir())
+    pass
