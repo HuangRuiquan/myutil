@@ -53,7 +53,7 @@ class Path:
                         folder_list.append(p)
         return folder_list
 
-    def get_one_sub_folder_name_list(self) -> List[str]:
+    def get_sub_folder_name_list_at_present_dir(self) -> List[str]:
         """
         返回当前路径下文件夹名称
         :return: 文件夹名称列表
@@ -102,7 +102,12 @@ class Path:
             file_list.extend(Path(folder).get_file_list_at_present_dir(suffix))
         return file_list
 
+    def get_filename_list_at_present_dir(self, suffix: List[str] = None) -> List[str]:
+        filename_list = []
+        for file in self.get_file_list_at_present_dir(suffix):
+            filename_list.append(os.path.basename(file))
+        return filename_list
+
 
 if __name__ == "__main__":
-    print(Path(r"D:\python\myutil\tests\folder").get_all_file_list([".png", ".rtf"]).__len__())
-    print(Path(r"D:\python\myutil\tests\folder").get_all_file_list([".png", ".rtf"]))
+    print(Path("..\\tests\\test_data\\folder").get_filename_list_at_present_dir([".txt"]))
