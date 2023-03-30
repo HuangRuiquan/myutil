@@ -136,7 +136,7 @@ class Path:
 
     def join_path(self, path):
         if os.path.isfile(self.path):
-            # todo
+            # todo daidia
             pass
 
 

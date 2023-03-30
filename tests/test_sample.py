@@ -1,5 +1,5 @@
 # Sample Test passing with nose and pytest
-from myutil.myutil import sample
+from src.myutil.myutil import sample
 
 
 def test_sample():

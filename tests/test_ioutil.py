@@ -2,7 +2,7 @@
 # @Author   :HRQ
 # @Time     :2023/3/27
 import unittest
-from myutil.ioutil import Path
+from src.myutil.ioutil import Path
 
 
 class Test_ioutil_path(unittest.TestCase):
