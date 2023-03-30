@@ -1,3 +1,7 @@
+# -*- coding:utf-8 -*-
+# @Author   :HRQ
+# @Time     :2023/3/27
+
 import os
 from typing import List
 
@@ -111,8 +115,11 @@ class Path:
     def get_filename_list_at_present_dir(self, suffix: List[str] = None) -> List[str]:
         """
         获取当前文件夹下文件名列表
-        :param suffix: 文件后缀列表
-        :return: 文件名列表
+        Args:
+            suffix: 文件后缀列表
+
+        Returns:文件名列表
+
         """
         filename_list = []
         for file in self.get_file_list_at_present_dir(suffix):
@@ -133,8 +140,7 @@ class Path:
             pass
 
 
-
 if __name__ == "__main__":
     # print(Path("..\\tests\\test_data\\folder\\new_dir1\\new_dir2\\new_dir3").makedir())
+    help(Path)
     pass
-
