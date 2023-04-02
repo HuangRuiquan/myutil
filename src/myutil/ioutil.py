@@ -30,6 +30,25 @@ class Path:
 
         self.path = os.path.abspath(path)
 
+    @property
+    def isfile(self):
+        """
+        路径为文件时返回True，否则返回False
+        """
+        if os.path.isfile(self.path):
+            return True
+        return False
+
+    @property
+    def isDir(self):
+        """
+        路径为文件夹时返回True，否则返回False
+        """
+
+        if os.path.isdir(self.path):
+            return True
+        return False
+
     def get_sub_folder_list(self) -> List[str]:
         """
         根据提供的路径返回路径下的子文件夹列表
@@ -50,13 +69,13 @@ class Path:
         :param suffix:指定文件后缀名列表
         :return: 返回文件列表
         """
-        if not os.path.isdir(self.path):
+        if not self.isDir:
             raise FooError(f"提供的路径不存在或者不是文件夹:{self.path}")
         path_list = [os.path.join(self.path, p) for p in os.listdir(self.path)]
         folder_list = []
         for p in path_list:
             if os.path.isfile(p):
-                if suffix is None:
+                if (suffix is None) or ("*.*" in suffix) or (".*" in suffix) or ("." in suffix):
                     folder_list.append(p)
                 else:
                     if os.path.splitext(p)[1] in suffix:
@@ -134,13 +153,40 @@ class Path:
         """
         os.makedirs(self.path, mode, exist_ok=True)
 
-    def join_path(self, path):
-        if os.path.isfile(self.path):
-            # todo daidia
-            pass
+    def change_suffix(self, suffix: str) -> str:
+        """
+        修改文件后缀名
+        Args:
+            suffix: 后缀名  example：".doc"
+
+        Returns:返回改变了后缀名的文件路径
+
+        """
+        if not self.isfile:
+            raise FooError("不是文件路径")
+        else:
+            path, suf = os.path.splitext(self.path)
+            return path + suffix
+
+    def change_filename_not_change_suffix(self, filename: str) -> str:
+        """
+        修改文件名称，不改后缀
+        Args:
+            filename: 文件名
+
+        Returns:新的文件绝对路径
+
+        """
+        if not self.isfile:
+            raise FooError("不是文件路径")
+        else:
+            path, suffix = os.path.splitext(self.path)
+            path_ = os.path.split(path)[0]
+            return os.path.join(path_, filename) + suffix
 
 
 if __name__ == "__main__":
     # print(Path("..\\tests\\test_data\\folder\\new_dir1\\new_dir2\\new_dir3").makedir())
-    help(Path)
+    print(Path("..\\..\\tests\\test_data\\folder\\file_1.txt").change_filename_not_change_suffix("file5"))
+    # help(Path)
     pass
