@@ -72,7 +72,7 @@ class Path:
     def get_file_list_at_present_dir(self, suffix: List[str] = None) -> List[str]:
         """
         根据提供的路径返回路径下的文件列表,可指定后缀
-        :param suffix:指定文件后缀名列表
+        :param suffix:指定文件后缀名列表 eg:[".bmp",".txt"]
         :return: 返回文件列表
         """
         if not self.isdir:
